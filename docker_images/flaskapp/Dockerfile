@@ -4,7 +4,9 @@ LABEL maintainer="Joao"
 RUN pip install flask
 
 WORKDIR /app
-COPY app.py .
+RUN git clone https://github.com/joaoleau/devops.git \
+    && cp -r devops/dev_projetos/flaska/* . \
+    && rm -rf devops
 
 ARG PORT
 ARG BACKGROUND_COLOR
