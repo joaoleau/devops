@@ -1,6 +1,8 @@
 FROM python:3.12.3-alpine3.20
 LABEL maintainer="Joao"
 
+RUN apk add --no-cache git
+
 WORKDIR /app
 
 RUN git clone https://github.com/joaoleau/devops.git \
