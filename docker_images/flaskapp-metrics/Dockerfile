@@ -1,7 +1,7 @@
-FROM python:3.12.3-alpine3.20
+FROM python:3.12.3-slim
 LABEL maintainer="Joao"
 
-RUN apk add --no-cache git
+RUN apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 

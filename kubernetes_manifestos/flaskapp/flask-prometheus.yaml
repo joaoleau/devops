@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-app-2
+  labels:
+    app: flask-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flask-app
+  template:
+    metadata:
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/path: /metrics
+        prometheus.io/port: "80"
+      labels:
+        app: flask-app
+    spec:
+      containers:
+      - name: flaska
+        image: leeegiit/flaska:2.0
+        env:
+        - name: BACKGROUND_COLOR
+          value: blue
+        ports:
+        - containerPort: 3000
