@@ -26,8 +26,8 @@ serviceAccount:
   name: ""
 
 podAnnotations:
-  prometheus.io/path: /metrics                                                                                                                                                                                                   │
-  prometheus.io/port: "80"                                                                                                                                                                                                       │
+  prometheus.io/path: /metrics
+  prometheus.io/port: "80"
   prometheus.io/scrape: "true"
 
 podLabels: {}
