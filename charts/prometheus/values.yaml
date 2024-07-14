@@ -31,8 +31,6 @@ commonMetaLabels: {}
 ## Ref: https://github.com/prometheus-operator/prometheus-operator/tree/main/cmd/prometheus-config-reloader
 ##
 configmapReload:
-  repository: nginx
-  tag: ""
   ## URL for configmap-reload to use for reloads
   ##
   reloadUrl: ""
