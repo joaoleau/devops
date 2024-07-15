@@ -8,6 +8,8 @@ then checks these files for specific key-value pairs. Specifically, it looks for
     * The key secretName is present.
 """
 
+NOT_DIRS = []
+
 def is_valid_key_value(key, value):
     if key == "kind" and value not in ["Deployment", "Application"]:
         return
@@ -27,14 +29,16 @@ def parse_yaml_file(file_path):
     return
 
 def find_yaml_files(directory):
-    matching_files = []
-    for root, _, files in os.walk(directory):
-        for file_name in files:
-            if file_name.endswith((".yaml", ".yml")):
-                file_path = os.path.join(root, file_name)
+    yaml_files = []
+    for root, dirs, files in os.walk(directory):
+        dirs[:] = [d for d in dirs if d not in NOT_DIRS]
+        
+        for file in files:
+            if file.endswith(".yaml") or file.endswith(".yml"):
+                file_path = os.path.join(root, file)
                 if parse_yaml_file(file_path):
-                    matching_files.append(file_path)
-    return matching_files
+                    yaml_files.append(file_path)
+    return yaml_files
 
 if __name__ == "__main__":
     current_directory = os.getcwd()
